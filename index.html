@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0072ff" />
+  <title>Enhanced Portfolio</title>
+
+  <!-- External resources -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.3/tsparticles.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Enhanced Base Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #eef2f3, #ffffff);
+      color: #2c3e50;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    i {
+      margin-right: 8px;
+      color: #4a90e2;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      padding: 1rem 2rem;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 600;
+      color: white;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffdd57;
+      outline: none;
+    }
+
+    nav ul li a:focus {
+      outline: 3px solid #ffdd57;
+      outline-offset: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #b9bdc2, #50c9c3);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero-content h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      display: inline-block;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background: linear-gradient(135deg, #5c6bc0, #9575cd);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Sections */
+    section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-top: 2px solid #b2d3f9;   /* Top border */
+      border-left: 2px solid #a6cbf5;  /* Left border */
+    }
+
+    section h2 {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #4a90e2;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    /* Skills as Grid */
+    .grid-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .grid-skills li {
+      border-top: 5px solid #00c6ff;
+      background-color: #f0f8ff;
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .grid-skills li:hover {
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #c5dde4, #0072ff);
+      color: white;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      text-align: center;
+      border-top: 5px solid #95dcf0;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #4a90e2;
+      color: white;
+      border-radius: 50%;
+      padding: 0.8rem 1rem;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: background 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .floating-btn:hover,
+    .floating-btn:focus {
+      background: #0072ff;
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position: fixed; z-index: -1; width: 100%; height: 100%;"></div>
+  <header>
+    <nav>
+      <h1><i class="fas fa-user-astronaut"></i> Engineer's Portfolio</h1>
+      <ul>
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="#skills"><i class="fas fa-lightbulb"></i> Skills</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>  
+  
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2><i class="fas fa-hand-sparkles"></i> Hi, I'm<span id="typed"></span></h2>
+      <p>This is my futuristic portfolio showcasing creative projects and AI-powered solutions.</p>
+      <a href="#projects" class="btn pulse"><i class="fas fa-eye"></i> View My Work</a>
+    </div>
+  </section>  
+  
+  <section id="about">
+    <h2><i class="fas fa-user-circle"></i> About Me</h2>
+    <p>I’m an AI Engineer and Web Developer, passionate about building intelligent systems and beautiful digital experiences.</p>
+  </section>  
+  
+  <section id="projects">
+    <h2><i class="fas fa-laptop-code"></i> Projects</h2>
+    <ul>
+      <li><strong>Portfolio Website:</strong> Fully responsive, interactive, PWA-ready.</li>
+      <li><strong>AI Chatbot:</strong> Powered by NLP and GPT APIs.</li>
+      <li><strong>Task Manager App:</strong> Offline-first, notification-enabled task manager.</li>
+    </ul>
+  </section>  
+  
+  <section id="skills">
+    <h2><i class="fas fa-brain"></i> Skills</h2>
+    <ul class="grid-skills">
+      <li><i class="fab fa-html5"></i> HTML</li>
+      <li><i class="fab fa-css3-alt"></i> CSS</li>
+      <li><i class="fab fa-js-square"></i> JavaScript</li>
+      <li><i class="fab fa-python"></i> Python</li>
+      <li><i class="fas fa-robot"></i> Machine Learning</li>
+      <li><i class="fas fa-brain"></i> Deep Learning</li>
+      <li><i class="fas fa-code-branch"></i> Git & GitHub</li>
+      <li><i class="fas fa-bolt"></i> PWA</li>
+    </ul>
+  </section>  
+  
+  <section id="contact">
+    <h2><i class="fas fa-envelope-open-text"></i> Contact</h2>
+    <p>Send me a message at: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+  </section>  
+  
+  <section id="certifications">
+    <h2><i class="fas fa-certificate"></i> Certifications</h2>
+    <ul>
+      <li><div class="cert-item">Certified AI & Machine Learning Engineer – Coursera</div></li>
+      <li><div class="cert-item">Progressive Web App Developer – Google Developers</div></li>
+      <li><div class="cert-item">Responsive Web Design – freeCodeCamp</div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><i class="fas fa-envelope"></i> youremail@example.com</p>
+    <p>&copy; 2025 Your Name. All rights reserved.</p>
+  </footer>
+
+  <a href="#contact" class="floating-btn" aria-label="Contact me">
+    <i class="fas fa-comment-dots"></i>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
